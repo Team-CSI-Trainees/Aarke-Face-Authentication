@@ -39,7 +39,10 @@ face_names = []
 process_this_frame = True
 
 
+
 def gen_frames():
+    global name
+    name='Unknown'
     while True:
         success, frame = camera.read()  # read the camera frame
         if not success:
@@ -59,7 +62,7 @@ def gen_frames():
             for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
                 matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-                name = "Unknown"
+                #name = "Unknown"
                 # Or instead, use the known face with the smallest distance to the new face
                 face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
                 best_match_index = np.argmin(face_distances)
@@ -84,10 +87,18 @@ def gen_frames():
                 font = cv2.FONT_HERSHEY_DUPLEX
                 cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
 
+
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+            if name == 'Unknown':
+                continue
+            else:
+                break
+
 
 
 @app.route('/')
@@ -101,6 +112,10 @@ def webcam():
 @app.route('/capture/video_feed')
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/welcome')
+def welcome():
+    return render_template('page3.html', name=name)
 
 
 if __name__=='__main__':
