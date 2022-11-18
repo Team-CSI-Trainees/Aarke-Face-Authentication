@@ -4,15 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Authentication</title>
+    <style>
+        #link{
+            margin-top: 10vh;
+        }
+
+        #link a{
+            text-decoration: none;
+            color:rebeccapurple;
+            border-radius: 20px;
+            padding: 3px;
+            transition: 0.3s;
+            }
+
+        #link a:hover{
+            border: 2px solid gainsboro;
+            background-color: gainsboro;
+            color:rebeccapurple;
+            text-decoration: none;
+            border-radius: 20px;
+            padding: 3px;
+            }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-lg-8  offset-lg-2">
                 <center>
-                <h3 class="mt-5">Look in the camera</h3>
-                <img src="{{'http://127.0.0.1:5000/capture/video_feed'}}" width="40%">
+                    <h3 class="mt-5">Look in the camera</h3>
+                    <img src="{{'http://127.0.0.1:5000/capture/video_feed'}}" width="40%"><br>
+                    <div id="link">
+                        <a href="http://127.0.0.1:5000/welcome">Authenticate</a>
+                    </div>
                 </center>
             </div>
         </div>
