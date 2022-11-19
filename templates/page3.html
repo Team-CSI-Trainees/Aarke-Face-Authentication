@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        img{
+            margin-top: 2vh;
+            width: 10vh;
+        }
+
         h1{
+            margin-top: 20vh;
             color: darkblue;
         }
     </style>
@@ -13,7 +19,7 @@
 </head>
 <body>
     <center>
-        <img src="./images/csi_logo.jpg" alt="csi_logo"><br>
+        <img src="{{url_for('static',filename='csi_logo.jpg')}}" alt="csi_logo" /><br>
         <h1>Welcome, {{name}} to Team CSI</h1>
     </center>
 </body>
